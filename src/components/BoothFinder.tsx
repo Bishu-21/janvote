@@ -176,6 +176,44 @@ export const BoothFinder = () => {
             </div>
           </div>
 
+          {/* Global Eye / Map Integration */}
+          <div className="lg:col-span-3 bg-white border-4 border-slate-900 shadow-brutalist overflow-hidden">
+            <div className="flex flex-col md:flex-row">
+              <div className="flex-1 p-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <MapPin className="text-primary" size={32} />
+                  <h2 className="font-inter font-black text-4xl uppercase tracking-tighter italic leading-none">Find Your <br />Polling Station.</h2>
+                </div>
+                <p className="font-work-sans text-slate-600 mb-8 uppercase font-bold text-xs leading-relaxed max-w-sm">
+                  Powered by **Google Maps**, locate your nearest booth in the Federation. Verified by official spatial data.
+                </p>
+                <div className="flex gap-4">
+                  <button className="bg-slate-900 text-white px-6 py-4 border-2 border-slate-900 font-inter font-black uppercase text-[10px] tracking-widest shadow-brutalist hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all">
+                    Use My Location
+                  </button>
+                  <button className="bg-white text-slate-900 px-6 py-4 border-2 border-slate-900 font-inter font-black uppercase text-[10px] tracking-widest shadow-brutalist hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all">
+                    Enter Booth Code
+                  </button>
+                </div>
+              </div>
+              <div className="w-full md:w-[60%] h-[400px] border-t-4 md:border-t-0 md:border-l-4 border-slate-900 relative">
+                <iframe
+                  title="Election Booth Locator"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAKL7opL2PgVunFdQoiEUozzOHOueNQl5w&q=polling+stations+near+me"
+                ></iframe>
+                <div className="absolute top-4 right-4 bg-google-green text-white px-3 py-1 border-2 border-slate-900 font-inter font-black uppercase text-[8px] tracking-widest shadow-brutalist">
+                  Live Spatial Data
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
