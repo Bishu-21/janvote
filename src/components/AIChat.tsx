@@ -57,10 +57,12 @@ export const AIChat = () => {
       });
 
       const chat = model.startChat({
-        history: messages.map(m => ({
-          role: m.role === "assistant" ? "model" : "user",
-          parts: [{ text: m.content }]
-        })),
+        history: messages
+          .filter((_, i) => i !== 0 || messages[0].role === "user") // Skip initial assistant greeting for API
+          .map(m => ({
+            role: m.role === "assistant" ? "model" : "user",
+            parts: [{ text: m.content }]
+          })),
       });
 
       const result = await chat.sendMessage(inputValue);
@@ -76,14 +78,14 @@ export const AIChat = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-[100]">
+    <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[100]">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="w-[90vw] sm:w-[400px] h-[600px] bg-white border-4 border-slate-900 shadow-brutalist-xl mb-4 flex flex-col overflow-hidden rounded-none"
+            className="w-[calc(100vw-32px)] sm:w-[400px] h-[500px] max-h-[70vh] sm:h-[600px] sm:max-h-[80vh] bg-white border-4 border-slate-900 shadow-brutalist-xl mb-4 flex flex-col overflow-hidden rounded-none"
           >
             {/* Header */}
             <div className="bg-primary p-6 text-white border-b-4 border-slate-900 flex items-center justify-between">
