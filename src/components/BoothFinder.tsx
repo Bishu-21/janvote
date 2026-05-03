@@ -17,9 +17,12 @@ export const BoothFinder = () => {
                 <BarChart2 className="text-primary" size={28} />
                 <h2 className="font-inter font-black text-3xl uppercase tracking-tighter">Results Tracker</h2>
               </div>
-              <p className="font-work-sans text-slate-600 mb-8 text-sm uppercase font-bold tracking-tight">
-                Live provincial counting status. Integrated with Google Maps for spatial trend visualization.
-              </p>
+              <div className="font-work-sans text-slate-600 mb-8 text-sm uppercase font-bold tracking-tight space-y-2">
+                <p>Monitor live seat-share shifts across the Federation Provinces.</p>
+                <div className="p-3 bg-slate-900 text-white text-[10px] border-2 border-slate-900">
+                  <p>Current Standing: **Apple Party** leading in North; **Orange Party** strong in South.</p>
+                </div>
+              </div>
               
               <div className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

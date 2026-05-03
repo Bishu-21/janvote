@@ -28,8 +28,16 @@ export const Hero = () => {
             <span className="text-primary">Declared.</span>
           </h1>
           <p className="font-work-sans text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed uppercase font-bold tracking-tight">
-            Real-time counting, verified trends, and provincial analysis for the 2026 Assembly Elections across the Federation.
+            The **2026 Assembly Elections** are a defining moment for the Federation. This platform provides **real-time counting updates**, **verified regional trends**, and **voter assistance** across all 36 provinces. 
           </p>
+          <div className="bg-slate-50 border-2 border-slate-900 p-4 shadow-brutalist text-[10px] font-bold uppercase tracking-tight max-w-lg">
+            <p className="mb-2">Key Election Facts (May 3, 2026):</p>
+            <ul className="list-disc pl-4 space-y-1">
+              <li>**Status:** Counting Phase (95% complete)</li>
+              <li>**Primary Provinces:** North, South, East, West</li>
+              <li>**Major Contenders:** Apple Party, Orange Party</li>
+            </ul>
+          </div>
           <div className="pt-stack-md flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button 
               aria-label="View Live Seat Share Breakdown"
