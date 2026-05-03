@@ -6,8 +6,8 @@ on:
 
 env:
   PROJECT_ID: arctic-math-438112-i9
-  REGION: us-central1 # Update to your preferred region
-  SERVICE: voteflow-platform
+  REGION: europe-west1
+  SERVICE: janvote-platform
 
 jobs:
   deploy:
@@ -29,20 +29,13 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Authorize Docker
-        run: gcloud auth configure-docker --quiet
-
-      - name: Build and Push Container
-        run: |-
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} .
-          docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
-
       - name: Deploy to Cloud Run
+        id: deploy
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
+          source: .
           flags: '--allow-unauthenticated'
           env_vars: |
             NEXT_PUBLIC_GEMINI_API_KEY=${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
