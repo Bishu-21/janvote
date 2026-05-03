@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "VoteFlow | 2026 Election Results Tracker",
   description: "Real-time results, constituency analysis, and civic engagement for the 2026 Assembly Elections.",
+};
+
+const ScrollProgress = () => {
+  return (
+    <div className="fixed top-0 left-0 w-full h-1.5 z-[100] pointer-events-none">
+      <div 
+        id="scroll-indicator"
+        className="h-full bg-primary shadow-[0_0_10px_rgba(33,150,243,0.5)] w-0 transition-all duration-100 ease-out" 
+      />
+      <Script id="scroll-handler" strategy="afterInteractive">
+        {`
+          window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-indicator').style.width = scrolled + '%';
+          });
+        `}
+      </Script>
+    </div>
+  );
 };
 
 export default function RootLayout({
@@ -15,8 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
+        {/* Google Analytics GA4 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-VOTEFLOW"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -24,25 +47,17 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-VOTEFLOW');
           `}
         </Script>
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-        {/* Google Analytics Integration */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VOTEFLOW"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-VOTEFLOW');
-          `
-        }} />
+
         {/* Structured Data for SEO/AEO/GEO */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+        <Script id="schema-election" type="application/ld+json">
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Election",
             "name": "2026 Federation Assembly Elections",
@@ -53,10 +68,10 @@ export default function RootLayout({
             },
             "description": "Live results and tracker for the 2026 Assembly Elections across North, South, East, and West Provinces.",
             "mainEntityOfPage": "https://voteflow.gov.in"
-          })
-        }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          })}
+        </Script>
+        <Script id="schema-faq" type="application/ld+json">
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
@@ -77,10 +92,11 @@ export default function RootLayout({
                 }
               }
             ]
-          })
-        }} />
+          })}
+        </Script>
       </head>
-      <body className="min-h-full flex flex-col font-work-sans bg-background text-on-surface">
+      <body className="min-h-full flex flex-col font-work-sans bg-background text-on-surface selection:bg-primary selection:text-white">
+        <ScrollProgress />
         {children}
       </body>
     </html>
