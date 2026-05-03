@@ -116,53 +116,55 @@ export const VoterJourney = () => {
         </div>
 
         {/* Right Column: Help & Engagement */}
-        <div className="md:col-span-4 space-y-6">
-          <div className="sticky top-24 border-4 border-slate-900 bg-white p-8 shadow-brutalist">
-            <h3 className="font-inter font-black text-slate-900 mb-6 border-b-4 border-slate-100 pb-4 uppercase italic">Civic Score</h3>
-            <div className="flex items-center justify-center mb-8 relative">
-              <svg className="w-32 h-32 transform -rotate-90">
-                <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-100" />
-                <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-primary" strokeDasharray="351.858" strokeDashoffset="87.96" />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-3xl font-black text-slate-900">75%</span>
+        <div className="md:col-span-4">
+          <div className="sticky top-24 space-y-6">
+            <div className="border-4 border-slate-900 bg-white p-8 shadow-brutalist">
+              <h3 className="font-inter font-black text-slate-900 mb-6 border-b-4 border-slate-100 pb-4 uppercase italic">Civic Score</h3>
+              <div className="flex items-center justify-center mb-8 relative">
+                <svg className="w-32 h-32 transform -rotate-90">
+                  <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-100" />
+                  <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-primary" strokeDasharray="351.858" strokeDashoffset="87.96" />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="text-3xl font-black text-slate-900">75%</span>
+                </div>
               </div>
-            </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3">
-                <Check className="text-google-green" size={18} strokeWidth={4} />
-                <span className="text-xs font-inter font-black uppercase tracking-tight">Voted in 2026</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Check className="text-google-green" size={18} strokeWidth={4} />
-                <span className="text-xs font-inter font-black uppercase tracking-tight">Verified Representative</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 border-2 border-slate-900" />
-                <span className="text-xs font-inter font-black uppercase tracking-tight text-slate-600">Contacted Office</span>
-              </li>
-            </ul>
-            <button 
-              aria-label="Download Full 2026 Result Summary PDF"
-              className="w-full py-4 bg-slate-900 text-white font-inter font-black uppercase text-xs tracking-widest border-4 border-slate-900 shadow-brutalist hover:bg-slate-800 transition-all mb-4"
-            >
-              Download Result Summary
-            </button>
-          </div>
-
-          <div className="border-4 border-slate-900 bg-slate-900 text-white p-8 shadow-brutalist relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <Bot className="text-primary" size={32} />
-                <h3 className="font-inter font-black uppercase">JanVote AI Insights</h3>
-              </div>
-              <p className="text-xs font-work-sans text-white/90 mb-6 font-bold uppercase tracking-tight italic leading-relaxed">
-                "Counting is almost done in {selectedState}. The leading party has a clear mandate in 215 seats. This is a 12% shift from 2021."
-              </p>
-              <button className="text-primary font-inter font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:translate-x-1 transition-all">
-                Ask Detailed Analysis
-                <ChevronRight size={14} strokeWidth={4} />
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <Check className="text-google-green" size={18} strokeWidth={4} />
+                  <span className="text-xs font-inter font-black uppercase tracking-tight">Voted in 2026</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Check className="text-google-green" size={18} strokeWidth={4} />
+                  <span className="text-xs font-inter font-black uppercase tracking-tight">Verified Representative</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-4 h-4 border-2 border-slate-900" />
+                  <span className="text-xs font-inter font-black uppercase tracking-tight text-slate-600">Contacted Office</span>
+                </li>
+              </ul>
+              <button 
+                aria-label="Download Full 2026 Result Summary PDF"
+                className="w-full py-4 bg-slate-900 text-white font-inter font-black uppercase text-xs tracking-widest border-4 border-slate-900 shadow-brutalist hover:bg-slate-800 transition-all mb-4"
+              >
+                Download Result Summary
               </button>
+            </div>
+
+            <div className="border-4 border-slate-900 bg-slate-900 text-white p-8 shadow-brutalist relative overflow-hidden">
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Bot className="text-primary" size={32} />
+                  <h3 className="font-inter font-black uppercase">JanVote AI Insights</h3>
+                </div>
+                <p className="text-xs font-work-sans text-white/90 mb-6 font-bold uppercase tracking-tight italic leading-relaxed">
+                  "Counting is almost done in {selectedState}. The leading party has a clear mandate in 215 seats. This is a 12% shift from 2021."
+                </p>
+                <button className="text-primary font-inter font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:translate-x-1 transition-all">
+                  Ask Detailed Analysis
+                  <ChevronRight size={14} strokeWidth={4} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

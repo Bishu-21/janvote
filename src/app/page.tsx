@@ -4,7 +4,7 @@ import { VoterJourney } from "@/components/VoterJourney";
 import { Timeline } from "@/components/Timeline";
 import { BoothFinder } from "@/components/BoothFinder";
 import { AIChat } from "@/components/AIChat";
-import { ShieldCheck, Database, Globe, Heart, Vote, Share2, Languages } from "lucide-react";
+import { ShieldCheck, Database, Globe, Heart, Vote, Share2, Languages, BarChart3 } from "lucide-react";
 
 export default function Home() {
   return (
@@ -84,28 +84,42 @@ export default function Home() {
       <BoothFinder />
       
       {/* Footer */}
-      <footer className="w-full py-12 px-8 bg-slate-900 text-white flex flex-col md:flex-row justify-between items-center border-t-4 border-slate-800">
-        <div className="mb-8 md:mb-0 text-center md:text-left">
-          <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
-            <Vote size={24} className="text-primary" />
-            <span className="text-2xl font-black italic">VoteFlow</span>
+      <footer className="w-full px-container-padding py-20 bg-slate-900 text-white border-t-4 border-slate-900">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="bg-white p-1 rounded text-slate-900 shadow-brutalist-sm">
+                <BarChart3 size={24} />
+              </div>
+              <span className="font-inter font-black text-2xl tracking-tighter uppercase italic">VoteFlow</span>
+            </div>
+            <p className="font-work-sans text-slate-400 max-w-sm mb-8 uppercase font-bold text-xs leading-relaxed">
+              Leading the 2026 Federation Assembly Election tracking with real-time data transparency and civic engagement.
+            </p>
           </div>
-          <p className="font-inter text-xs text-slate-400 uppercase tracking-widest">© 2026 VoteFlow. Digital-First Government.</p>
+          <div>
+            <h4 className="font-inter font-black uppercase text-sm mb-6 text-primary">Governance</h4>
+            <ul className="space-y-4 font-work-sans text-xs font-bold uppercase tracking-widest">
+              <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/contact" className="hover:text-primary transition-colors">Compliance</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-inter font-black uppercase text-sm mb-6 text-primary">Civic Links</h4>
+            <ul className="space-y-4 font-work-sans text-xs font-bold uppercase tracking-widest">
+              <li><a href="/contact" className="hover:text-primary transition-colors">Contact Us</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Booth Finder</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Affidavits</a></li>
+            </ul>
+          </div>
         </div>
-        
-        <div className="flex flex-col md:flex-row gap-8 items-center">
-          <div className="flex gap-6 font-inter font-bold text-[10px] uppercase tracking-widest text-slate-300">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary transition-colors">Contact Us</a>
-          </div>
-          <div className="flex gap-4">
-            <button aria-label="Share Results Dashboard" className="p-2 border-2 border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">
-              <Share2 size={18} />
-            </button>
-            <button aria-label="Change Language" className="p-2 border-2 border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">
-              <Languages size={18} />
-            </button>
+        <div className="max-w-7xl mx-auto pt-8 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] font-black uppercase tracking-widest text-white/50 italic">
+            © 2026 VoteFlow. Digital-First Government. All results subject to ECI certification.
+          </p>
+          <div className="flex gap-6">
+            <span className="text-[10px] font-black uppercase tracking-widest text-white/30">v1.0.4-production</span>
           </div>
         </div>
       </footer>
