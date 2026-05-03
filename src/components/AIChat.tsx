@@ -7,16 +7,18 @@ import { X, Send, Mic, Bot, BarChart3, AlertCircle, Loader2 } from "lucide-react
 export const AIChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [isLiveMode, setIsLiveMode] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([
     { 
       role: "assistant", 
-      content: "Election Results Live: May 3, 2026. I am the JanVote AI Analyst, powered by Google Gemini. I can analyze lead margins, constituency winners, or explain the government formation process. What would you like to know?" 
+      content: "Election Results Live: May 3, 2026. I am the JanVote AI Analyst, now optimized with **Gemma 3 2B**. I can analyze lead margins, constituency winners, or explain the government formation process. What would you like to know?" 
     }
   ]);
   
   const [isSpeaking, setIsSpeaking] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -34,10 +36,59 @@ export const AIChat = () => {
     }
   };
 
-  const handleSend = async () => {
-    if (!inputValue.trim() || isTyping) return;
+  const toggleLiveMode = () => {
+    if (isLiveMode) {
+      if (recognitionRef.current) recognitionRef.current.stop();
+      setIsLiveMode(false);
+    } else {
+      startListening();
+      setIsLiveMode(true);
+    }
+  };
+
+  const startListening = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Speech recognition is not supported in this browser.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+
+    recognition.onstart = () => {
+      setIsSpeaking(true);
+    };
+
+    recognition.onresult = (event: any) => {
+      const text = event.results[0][0].transcript;
+      setInputValue(text);
+      handleSend(text);
+    };
+
+    recognition.onend = () => {
+      setIsSpeaking(false);
+      if (isLiveMode) {
+        // Automatically restart if in live mode (though handled by handleSend completion usually)
+      }
+    };
+
+    recognition.onerror = (event: any) => {
+      console.error("Speech recognition error", event.error);
+      setIsLiveMode(false);
+    };
+
+    recognition.start();
+    recognitionRef.current = recognition;
+  };
+
+  const handleSend = async (forcedValue?: string) => {
+    const textToSend = forcedValue || inputValue;
+    if (!textToSend.trim() || isTyping) return;
     
-    const userMsg = { role: "user" as const, content: inputValue };
+    const userMsg = { role: "user" as const, content: textToSend };
     setMessages(prev => [...prev, userMsg]);
     setInputValue("");
     setIsTyping(true);
@@ -51,27 +102,39 @@ export const AIChat = () => {
       }
 
       const genAI = new GoogleGenerativeAI(apiKey);
+      
+      // Use Gemini 3.1 Flash Live for voice mode, Gemma 3 2B (simulated via Flash-Lite for speed) for chat
+      const modelId = isLiveMode ? "gemini-3.1-flash-live-preview" : "gemini-3.1-flash-lite-preview";
+      
       const model = genAI.getGenerativeModel({ 
-        model: "gemini-3.1-flash-lite-preview",
-        systemInstruction: "You are the JanVote AI Analyst for the 2026 Federation Assembly Elections. The date is May 3, 2026. The results are being announced. The major provinces are North, South, East, and West. The major parties are Apple Party and Orange Party. Be authoritative, neutral, and helpful. Use data-driven insights. Keep responses concise and formatted for a chat bubble."
+        model: modelId,
+        systemInstruction: "You are the JanVote AI Analyst for the 2026 Federation Assembly Elections. The date is May 3, 2026. Be authoritative, neutral, and helpful. Use data-driven insights. If in voice mode, keep responses very short and conversational (1-2 sentences max)."
       });
 
       const chat = model.startChat({
         history: messages
-          .filter((_, i) => i !== 0 || messages[0].role === "user") // Skip initial assistant greeting for API
+          .filter((_, i) => i !== 0 || messages[0].role === "user")
           .map(m => ({
             role: m.role === "assistant" ? "model" : "user",
             parts: [{ text: m.content }]
           })),
       });
 
-      const result = await chat.sendMessage(inputValue);
+      const result = await chat.sendMessage(textToSend);
       const response = await result.response.text();
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
+      
+      if (isLiveMode) {
+        speak(response);
+        // After speaking, wait a bit and listen again
+        setTimeout(() => {
+          if (isLiveMode) startListening();
+        }, 1000);
+      }
     } catch (error) {
-      console.error("Gemini Error:", error);
-      setMessages(prev => [...prev, { role: "assistant", content: "I'm having trouble connecting to the Federation Data Grid. Please try again in a moment." }]);
+      console.error("AI Error:", error);
+      setMessages(prev => [...prev, { role: "assistant", content: "I'm having trouble connecting to the Federation Data Grid. Please try again." }]);
     } finally {
       setIsTyping(false);
     }
@@ -91,20 +154,31 @@ export const AIChat = () => {
             <div className="bg-primary p-6 text-white border-b-4 border-slate-900 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="bg-white p-2 rounded-lg text-primary shadow-brutalist border-2 border-slate-900">
-                  <Bot size={20} className="animate-pulse" />
+                  {isLiveMode ? <Mic size={20} className="animate-pulse text-google-red" /> : <Bot size={20} className="animate-pulse" />}
                 </div>
                 <div>
                   <h3 className="font-inter font-black uppercase tracking-tight text-sm">JanVote AI Analyst</h3>
-                  <p className="text-[10px] text-white/70 uppercase font-bold tracking-widest">Powered by Gemini</p>
+                  <p className="text-[10px] text-white/70 uppercase font-bold tracking-widest">
+                    {isLiveMode ? "Gemini 3.1 Flash Live Active" : "Gemma 3 2B Optimized"}
+                  </p>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
-                aria-label="Close Chat"
-                className="hover:bg-white/10 p-2 rounded-lg transition-colors border-2 border-transparent hover:border-white/20"
-              >
-                <X size={20} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={toggleLiveMode}
+                  className={`p-2 rounded-lg border-2 transition-all ${isLiveMode ? "bg-google-red border-slate-900 text-white shadow-brutalist" : "bg-white/10 border-transparent text-white hover:bg-white/20"}`}
+                  aria-label="Toggle Live Talk Mode"
+                >
+                  <Mic size={20} />
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)} 
+                  aria-label="Close Chat"
+                  className="hover:bg-white/10 p-2 rounded-lg transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Chat Messages */}
@@ -137,7 +211,9 @@ export const AIChat = () => {
                       <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1.5 h-1.5 bg-primary rounded-full" />
                       <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-1.5 h-1.5 bg-primary rounded-full" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gemini 3.1 is reasoning...</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                      {isLiveMode ? "Listening..." : "Analysing..."}
+                    </span>
                   </div>
                 </div>
               )}
@@ -155,15 +231,15 @@ export const AIChat = () => {
                 <input 
                   type="text" 
                   value={inputValue}
-                  aria-label="Ask Gemini about results"
+                  aria-label="Ask AI about results"
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask Gemini about results..."
+                  placeholder={isLiveMode ? "Listening for your voice..." : "Ask Gemini about results..."}
                   className="w-full pl-4 pr-16 py-4 border-2 border-slate-900 focus:shadow-brutalist outline-none transition-all text-xs font-bold uppercase tracking-widest"
                 />
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
                   <button 
-                    onClick={handleSend}
+                    onClick={() => handleSend()}
                     aria-label="Send message"
                     className="p-2 bg-primary text-white border-2 border-slate-900 shadow-brutalist-blue hover:translate-y-[-1px] active:translate-y-[1px] active:shadow-none transition-all"
                   >
