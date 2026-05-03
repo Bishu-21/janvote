@@ -44,7 +44,13 @@ export const AIChat = () => {
 
     try {
       const { GoogleGenerativeAI } = await import("@google/generative-ai");
-      const genAI = new GoogleGenerativeAI("AIzaSyAKL7opL2PgVunFdQoiEUozzOHOueNQl5w");
+      const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+      
+      if (!apiKey) {
+        throw new Error("Gemini API Key is missing. Please configure it in .env.local");
+      }
+
+      const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ 
         model: "gemini-3.1-flash-lite-preview",
         systemInstruction: "You are the JanVote AI Analyst for the 2026 Federation Assembly Elections. The date is May 3, 2026. The results are being announced. The major provinces are North, South, East, and West. The major parties are Apple Party and Orange Party. Be authoritative, neutral, and helpful. Use data-driven insights. Keep responses concise and formatted for a chat bubble."
