@@ -143,18 +143,80 @@ export const AIChat = () => {
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[100]">
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="w-[calc(100vw-32px)] sm:w-[400px] h-[500px] max-h-[70vh] sm:h-[600px] sm:max-h-[80vh] bg-white border-4 border-slate-900 shadow-brutalist-xl mb-4 flex flex-col overflow-hidden rounded-none"
-          >
+            {/* Voice Agent Overlay */}
+            <AnimatePresence>
+              {isLiveMode && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-0 z-50 bg-slate-900 flex flex-col items-center justify-center p-10 text-center"
+                >
+                  <button 
+                    onClick={toggleLiveMode}
+                    className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+                  >
+                    <X size={32} />
+                  </button>
+                  
+                  <div className="mb-12 relative">
+                    <motion.div 
+                      animate={{ 
+                        scale: isSpeaking ? [1, 1.2, 1] : 1,
+                        opacity: isSpeaking ? [0.5, 1, 0.5] : 0.5
+                      }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      className="w-32 h-32 bg-primary rounded-full blur-2xl absolute inset-0"
+                    />
+                    <div className="w-32 h-32 border-4 border-white rounded-full flex items-center justify-center relative z-10">
+                      <Mic size={48} className={isSpeaking ? "text-white animate-pulse" : "text-white/50"} />
+                    </div>
+                    
+                    {/* Sound Waves */}
+                    {isSpeaking && (
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-1 items-end h-8">
+                        {[1, 2, 3, 4, 5].map(i => (
+                          <motion.div
+                            key={i}
+                            animate={{ height: [8, 32, 8] }}
+                            transition={{ repeat: Infinity, duration: 0.5, delay: i * 0.1 }}
+                            className="w-1 bg-white rounded-full"
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <h2 className="font-inter font-black text-3xl text-white uppercase tracking-tighter mb-4 italic">
+                    {isTyping ? "Analysing..." : isSpeaking ? "JanVote is Speaking..." : "Listening..."}
+                  </h2>
+                  <p className="font-work-sans text-white/60 text-xs uppercase font-bold tracking-widest max-w-xs">
+                    {isTyping ? "Fetching real-time data from the Federation grid" : "Ask me anything about the 2026 Assembly Elections"}
+                  </p>
+
+                  <div className="mt-12 w-full max-w-xs h-1 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div 
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                      className="w-1/3 h-full bg-primary"
+                    />
+                  </div>
+
+                  <button 
+                    onClick={toggleLiveMode}
+                    className="mt-12 px-8 py-4 border-2 border-white text-white font-inter font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-slate-900 transition-all"
+                  >
+                    Switch to Text
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Header */}
             <div className="bg-primary p-6 text-white border-b-4 border-slate-900 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="bg-white p-2 rounded-lg text-primary shadow-brutalist border-2 border-slate-900">
-                  {isLiveMode ? <Mic size={20} className="animate-pulse text-google-red" /> : <Bot size={20} className="animate-pulse" />}
+                  <Bot size={20} className="animate-pulse" />
                 </div>
                 <div>
                   <h3 className="font-inter font-black uppercase tracking-tight text-sm">JanVote AI Analyst</h3>
@@ -234,7 +296,7 @@ export const AIChat = () => {
                   aria-label="Ask AI about results"
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={isLiveMode ? "Listening for your voice..." : "Ask Gemini about results..."}
+                  placeholder={isLiveMode ? "Listening..." : "Ask Gemini about results..."}
                   className="w-full pl-4 pr-16 py-4 border-2 border-slate-900 focus:shadow-brutalist outline-none transition-all text-xs font-bold uppercase tracking-widest"
                 />
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
