@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VoteFlow - Interactive Voter Journey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e3dffe",
+                        "secondary-fixed": "#89fa9b",
+                        "on-secondary-fixed-variant": "#005320",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#004493",
+                        "tertiary-fixed-dim": "#fbbc06",
+                        "primary-container": "#1a73e8",
+                        "on-tertiary-fixed": "#261a00",
+                        "inverse-primary": "#adc7ff",
+                        "surface-container-low": "#f6f2ff",
+                        "surface-bright": "#fcf8ff",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#e3dffe",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c1c6d6",
+                        "primary": "#005bbf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1930",
+                        "surface": "#fcf8ff",
+                        "on-tertiary-container": "#ffffff",
+                        "tertiary-fixed": "#ffdea0",
+                        "secondary-fixed-dim": "#6ddd81",
+                        "on-secondary-container": "#00722f",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005bc0",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f2e46",
+                        "background": "#fcf8ff",
+                        "surface-container": "#efebff",
+                        "surface-dim": "#dad7f6",
+                        "on-surface-variant": "#414754",
+                        "on-primary-fixed": "#001a41",
+                        "on-surface": "#1a1930",
+                        "tertiary": "#795900",
+                        "primary-fixed-dim": "#adc7ff",
+                        "on-secondary-fixed": "#002108",
+                        "on-primary-container": "#ffffff",
+                        "inverse-on-surface": "#f2eeff",
+                        "secondary": "#006e2c",
+                        "surface-container-high": "#e9e5ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#86f898",
+                        "tertiary-container": "#987000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "gutter": "20px",
+                        "section-gap": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-lg": ["Work Sans"],
+                        "h1": ["Inter"],
+                        "body-md": ["Work Sans"],
+                        "caption": ["Work Sans"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "h3": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .brutalist-shadow {
+            box-shadow: 4px 4px 0px 0px #0D0C22;
+        }
+        .brutalist-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px #0D0C22;
+        }
+        .brutalist-shadow-active:active {
+            box-shadow: 0px 0px 0px 0px #0D0C22;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b-2 border-slate-900 bg-white/70 backdrop-blur-lg flex justify-between items-center px-6 py-3 w-full shadow-[4px_4px_0px_0px_#0D0C22]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-slate-900 italic font-h2">VoteFlow</span>
+<div class="hidden md:flex gap-6">
+<a class="font-label-bold text-slate-700 hover:translate-y-[-1px] transition-transform" href="#">Timeline</a>
+<a class="font-label-bold text-slate-700 hover:translate-y-[-1px] transition-transform" href="#">Booth Finder</a>
+<a class="font-label-bold text-slate-700 hover:translate-y-[-1px] transition-transform" href="#">JanVote AI</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-900 p-2 border-2 border-slate-900 rounded-lg brutalist-shadow hover:translate-y-[-2px] transition-all" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 border-2 border-slate-900 rounded-full overflow-hidden brutalist-shadow">
+<img alt="User Profile Avatar" data-alt="A professional headshot of a diverse young adult with a friendly expression, set against a clean, bright studio background with soft directional lighting. The aesthetic is modern and corporate-friendly, utilizing high-key lighting to complement the light-mode UI. The focus is sharp on the face, creating an approachable and trustworthy profile representation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtwD_dFfSpx1eTOiCYuFvBoYIyraiGI8wldwCJAQNYpa3Rf73dklorsww-SrTjVKOpT6UMCzQBwGzfVnBaavYP1lQxiuEZ_Fg8SHVXrgRnenAFstQXA0ZU2LFlJWi24CV0svHhnoDbQDYP1pZrVBZA4y0etqTzHwIX5C7B_9QwQf3K4hWM-NrFSCGPbG2c9Fb4HStHi62gWh8BDhFX1W_sy7Y3jO8bFxOBrBZUk7Zpeu16aKw9HHzzR5rX02V02hYBi4WJJ1Td7_Y"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full h-screen w-64 border-r-2 border-slate-900 bg-white shadow-[4px_0px_0px_0px_#0D0C22] pt-24 pb-8 px-4 z-40">
+<div class="mb-8 px-2">
+<h2 class="text-xl font-black text-slate-900 font-h3">VoteFlow</h2>
+<p class="text-sm font-caption text-slate-500">Civic Engagement</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold">Home</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary-container text-white shadow-[4px_4px_0px_0px_#0D0C22] translate-x-1 font-label-bold" href="#">
+<span class="material-symbols-outlined" data-icon="Ads_Click">ads_click</span>
+<span>My Journey</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100 hover:translate-x-1 transition-transform font-label-bold" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span>Elections</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100 hover:translate-x-1 transition-transform font-label-bold" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span>AI Assistant</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100 hover:translate-x-1 transition-transform font-label-bold" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<button class="mt-auto w-full py-4 border-2 border-slate-900 bg-primary text-white font-label-bold brutalist-shadow hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_0px_#0D0C22] active:translate-y-[2px] transition-all">
+            Register to Vote
+        </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 min-h-screen px-container-padding pb-section-gap">
+<!-- Header Section -->
+<header class="max-w-5xl mx-auto mb-stack-lg">
+<h1 class="font-h1 text-on-surface mb-2">Voter Journey</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">Complete your registration profile in three easy steps. Our Digital-First Government system ensures your voice is heard securely and efficiently.</p>
+</header>
+<!-- Progress Stepper -->
+<section class="max-w-5xl mx-auto mb-12">
+<div class="relative flex justify-between items-center w-full">
+<!-- Progress Line -->
+<div class="absolute h-1 bg-slate-200 w-full top-1/2 -translate-y-1/2 z-0"></div>
+<div class="absolute h-1 bg-secondary w-1/2 top-1/2 -translate-y-1/2 z-0"></div>
+<!-- Step 1: Done -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-secondary border-2 border-slate-900 flex items-center justify-center text-white brutalist-shadow">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="mt-2 font-label-bold text-secondary">Start</span>
+</div>
+<!-- Step 2: Active -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 shadow-[4px_4px_0px_0px_#005bbf]">
+<span class="font-label-bold">2</span>
+</div>
+<span class="mt-2 font-label-bold text-primary">Identity</span>
+</div>
+<!-- Step 3: Inactive -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-400">
+<span class="font-label-bold">3</span>
+</div>
+<span class="mt-2 font-label-bold text-slate-400">Confirmation</span>
+</div>
+</div>
+</section>
+<!-- Journey Steps Bento Grid -->
+<div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Step 1: Select Your State (Left Column) -->
+<div class="md:col-span-8 space-y-8">
+<section class="bg-white/70 backdrop-blur-md border-2 border-slate-900 p-8 rounded-xl brutalist-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="map">map</span>
+<h2 class="font-h3 text-slate-900">1. Select Your State</h2>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- State Card -->
+<button class="group flex flex-col items-center p-4 border-2 border-slate-900 rounded-xl bg-white hover:bg-primary-fixed-dim hover:translate-y-[-4px] transition-all brutalist-shadow-hover">
+<span class="material-symbols-outlined text-4xl mb-2 text-slate-700 group-hover:text-primary" data-icon="location_city">location_city</span>
+<span class="font-label-bold uppercase tracking-widest text-xs">California</span>
+</button>
+<!-- State Card -->
+<button class="group flex flex-col items-center p-4 border-2 border-primary bg-primary-fixed text-primary rounded-xl translate-y-[-4px] shadow-[6px_6px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined text-4xl mb-2" data-icon="apartment" style="font-variation-settings: 'FILL' 1;">apartment</span>
+<span class="font-label-bold uppercase tracking-widest text-xs">New York</span>
+</button>
+<!-- State Card -->
+<button class="group flex flex-col items-center p-4 border-2 border-slate-900 rounded-xl bg-white hover:bg-primary-fixed-dim hover:translate-y-[-4px] transition-all brutalist-shadow-hover">
+<span class="material-symbols-outlined text-4xl mb-2 text-slate-700 group-hover:text-primary" data-icon="holiday_village">holiday_village</span>
+<span class="font-label-bold uppercase tracking-widest text-xs">Texas</span>
+</button>
+<!-- State Card -->
+<button class="group flex flex-col items-center p-4 border-2 border-slate-900 rounded-xl bg-white hover:bg-primary-fixed-dim hover:translate-y-[-4px] transition-all brutalist-shadow-hover">
+<span class="material-symbols-outlined text-4xl mb-2 text-slate-700 group-hover:text-primary" data-icon="forest">forest</span>
+<span class="font-label-bold uppercase tracking-widest text-xs">Oregon</span>
+</button>
+</div>
+<div class="mt-8 relative overflow-hidden rounded-xl border-2 border-slate-900 h-48 brutalist-shadow">
+<img alt="Map of New York" data-alt="A highly detailed, stylized digital map of New York City in light mode, featuring clean lines and a vibrant primary blue and slate palette. The cartography uses bold typography for borough names and minimalist icons for major landmarks. The lighting is bright and even, emphasizing a sense of order and civic transparency, perfectly matching the VoteFlow neo-brutalist aesthetic." data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG2JSWUegqtP24kCWLkWwd14lSop9AoD2NoaZH0laSoXbDTJkB0YJXuNF43DJwhseHFGs_HuSeo8e6YOA1F7GFOihm6T_FbTk-yDtiHESwFutBkaqFjHFfcNJYX3_fmLNOaRhrIskmstph6ublRbZTE2gxcHDlKF0zoJ1T9QqbNyRNl7aixVzJpsiM2PL6Ca2sXdfnzoX5Yn87OsvC0LLutiU4Rl2cFMCXCJZNHTxRmENqih1G5PeTs_VqUgB0LuiBvvVi4cyn8Xc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent flex items-end p-4">
+<div class="bg-white/90 backdrop-blur-md border-2 border-slate-900 px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-bold text-slate-900">NY State Registration Active</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Eligibility Check (Expanded) -->
+<section class="bg-surface-container-low border-2 border-slate-900 p-8 rounded-xl brutalist-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="how_to_reg">how_to_reg</span>
+<h2 class="font-h3 text-slate-900">2. Eligibility Check</h2>
+</div>
+<div class="space-y-6">
+<!-- Toggle Card -->
+<div class="bg-white/70 backdrop-blur-lg border-2 border-slate-900 p-6 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-secondary-container p-3 rounded-xl border-2 border-secondary">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="person_add">person_add</span>
+</div>
+<div>
+<h4 class="font-label-bold text-slate-900">First-time voter?</h4>
+<p class="text-sm text-slate-500 font-caption">We'll provide extra guidance for your journey.</p>
+</div>
+</div>
+<button class="relative inline-flex h-8 w-14 items-center rounded-full bg-primary border-2 border-slate-900 transition-colors brutalist-shadow">
+<span class="translate-x-7 inline-block h-4 w-4 transform rounded-full bg-white transition-transform border-2 border-slate-900"></span>
+</button>
+</div>
+<!-- Info Card -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="border-2 border-slate-900 p-4 rounded-xl bg-white brutalist-shadow hover:translate-y-[-2px] transition-all">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-blue-500" data-icon="cake">cake</span>
+<span class="font-label-bold">Age Requirement</span>
+</div>
+<p class="text-sm font-body-md text-slate-600">Must be at least 18 years old on or before Election Day.</p>
+</div>
+<div class="border-2 border-slate-900 p-4 rounded-xl bg-white brutalist-shadow hover:translate-y-[-2px] transition-all">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-blue-500" data-icon="flag">flag</span>
+<span class="font-label-bold">Citizenship</span>
+</div>
+<p class="text-sm font-body-md text-slate-600">Must be a United States citizen to participate in federal elections.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Summary & Actions -->
+<div class="md:col-span-4 space-y-6">
+<!-- Summary Card -->
+<div class="sticky top-24 border-2 border-slate-900 bg-white p-6 rounded-xl brutalist-shadow">
+<h3 class="font-label-bold text-slate-900 mb-4 border-b-2 border-slate-100 pb-2">Your Progress</h3>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-sm font-body-md text-slate-700">Account Verified</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+<span class="text-sm font-body-md font-bold text-slate-900">State: New York</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-300">radio_button_unchecked</span>
+<span class="text-sm font-body-md text-slate-400">ID Verification</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-300">radio_button_unchecked</span>
+<span class="text-sm font-body-md text-slate-400">Final Confirmation</span>
+</li>
+</ul>
+<button class="w-full py-4 bg-primary text-white font-label-bold rounded-lg border-2 border-slate-900 brutalist-shadow hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_0px_#0D0C22] active:translate-y-[2px] transition-all mb-4">
+                        Continue Registration
+                    </button>
+<button class="w-full py-3 bg-white text-slate-900 font-label-bold rounded-lg border-2 border-slate-900 hover:bg-slate-50 transition-colors">
+                        Save for Later
+                    </button>
+</div>
+<!-- AI Help Card -->
+<div class="border-2 border-slate-900 bg-surface-container-highest p-6 rounded-xl brutalist-shadow relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="smart_toy">smart_toy</span>
+<h4 class="font-label-bold text-slate-900">JanVote AI Help</h4>
+</div>
+<p class="text-sm font-body-md text-slate-700 mb-4">"I noticed you're registering in New York. You'll need a valid NY driver's license for the next step!"</p>
+<button class="text-primary font-label-bold text-sm flex items-center gap-1 hover:underline">
+                            Ask a question
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center bg-slate-900 dark:bg-black border-t-2 border-slate-800 text-slate-400">
+<div class="mb-6 md:mb-0">
+<span class="text-lg font-bold text-white mb-2 block">VoteFlow</span>
+<p class="text-sm font-body-md">© 2024 VoteFlow. Digital-First Government.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-sm font-label-bold hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm font-label-bold hover:text-blue-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-sm font-label-bold hover:text-blue-400 transition-colors" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>

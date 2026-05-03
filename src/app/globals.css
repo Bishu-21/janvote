@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+/* 
+  Tailwind 4 Theme Configuration 
+  Note: @theme is a Tailwind 4 specific rule. 
+  If your IDE shows a warning, it is a false positive due to the IDE's CSS parser being on an older version.
+*/
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-work-sans: "Work Sans", sans-serif;
+
+  /* Refined Indian Election / Neo-Brutalist Palette */
+  --color-google-blue: #1a73e8;
+  --color-google-red: #ea4335;
+  --color-google-yellow: #fbbc04;
+  --color-google-green: #34a853;
+  
+  --color-primary: #005bbf;
+  --color-primary-container: #1a73e8;
+  --color-primary-fixed: #d8e2ff;
+  --color-secondary: #006e2c;
+  --color-secondary-container: #86f898;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-surface: #fcf8ff;
+  --color-on-surface: #1a1930;
+  --color-on-surface-variant: #414754;
+  --color-background: #fcf8ff;
+  --color-on-background: #1a1930;
+  --color-tertiary-fixed: #ffdea0;
+  --color-tertiary-fixed-dim: #fbbc06;
+
+  /* Custom Spacing */
+  --spacing-stack-sm: 8px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 32px;
+  --spacing-section-gap: 80px;
+  --spacing-container-padding: 24px;
+
+  /* Brutalist Shadows */
+  --shadow-brutalist: 4px 4px 0px 0px #0D0C22;
+  --shadow-brutalist-lg: 8px 8px 0px 0px #0D0C22;
+  --shadow-brutalist-xl: 12px 12px 0px 0px #0D0C22;
+  --shadow-brutalist-blue: 8px 8px 0px 0px #005bbf;
+  --shadow-brutalist-red: 8px 8px 0px 0px #ba1a1a;
+  --shadow-brutalist-green: 8px 8px 0px 0px #006e2c;
+}
+
+/* 
+  Base Styles & Utilities 
+  Using standard CSS to avoid @apply warnings while maintaining Tailwind functionality.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter);
+  font-weight: 900;
+}
+
+/* Custom Brutalist Utility Classes */
+.brutalist-card {
+  background-color: white;
+  border: 2px solid #0f172a; /* slate-900 */
+  box-shadow: var(--shadow-brutalist);
+  transition: all 0.2s ease;
+}
+
+.brutalist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #0f172a;
+  box-shadow: var(--shadow-brutalist);
+  transition: all 0.1s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: var(--font-inter);
+  font-weight: 900;
+}
+
+.brutalist-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.glass-brutalist {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 2px solid #0f172a;
+  box-shadow: var(--shadow-brutalist);
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e3dffe",
+                        "secondary-fixed": "#89fa9b",
+                        "on-secondary-fixed-variant": "#005320",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#004493",
+                        "tertiary-fixed-dim": "#fbbc06",
+                        "primary-container": "#1a73e8",
+                        "on-tertiary-fixed": "#261a00",
+                        "inverse-primary": "#adc7ff",
+                        "surface-container-low": "#f6f2ff",
+                        "surface-bright": "#fcf8ff",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#e3dffe",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c1c6d6",
+                        "primary": "#005bbf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1930",
+                        "surface": "#fcf8ff",
+                        "on-tertiary-container": "#ffffff",
+                        "tertiary-fixed": "#ffdea0",
+                        "secondary-fixed-dim": "#6ddd81",
+                        "on-secondary-container": "#00722f",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005bc0",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f2e46",
+                        "background": "#fcf8ff",
+                        "surface-container": "#efebff",
+                        "surface-dim": "#dad7f6",
+                        "on-surface-variant": "#414754",
+                        "on-primary-fixed": "#001a41",
+                        "on-surface": "#1a1930",
+                        "tertiary": "#795900",
+                        "primary-fixed-dim": "#adc7ff",
+                        "on-secondary-fixed": "#002108",
+                        "on-primary-container": "#ffffff",
+                        "inverse-on-surface": "#f2eeff",
+                        "secondary": "#006e2c",
+                        "surface-container-high": "#e9e5ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#86f898",
+                        "tertiary-container": "#987000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "gutter": "20px",
+                        "section-gap": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-lg": ["Work Sans"],
+                        "h1": ["Inter"],
+                        "body-md": ["Work Sans"],
+                        "caption": ["Work Sans"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "h3": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .brutalist-shadow {
+            box-shadow: 4px 4px 0px 0px #0D0C22;
+        }
+        .brutalist-shadow-lg {
+            box-shadow: 8px 8px 0px 0px #0D0C22;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b-2 border-slate-900 bg-white/70 backdrop-blur-lg flex justify-between items-center px-6 py-3 w-full shadow-[4px_4px_0px_0px_#0D0C22]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-slate-900 italic tracking-tight uppercase font-h2">VoteFlow</span>
+<div class="hidden md:flex gap-6">
+<a class="font-label-bold text-label-bold text-slate-700 hover:translate-y-[-1px] transition-transform" href="#">Timeline</a>
+<a class="font-label-bold text-label-bold text-slate-700 hover:translate-y-[-1px] transition-transform" href="#">Booth Finder</a>
+<a class="font-label-bold text-label-bold text-blue-600 border-b-2 border-blue-600 hover:translate-y-[-1px] transition-transform" href="#">JanVote AI</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-700 p-2 hover:bg-slate-100 rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full border-2 border-slate-900 overflow-hidden">
+<img alt="User Profile Avatar" data-alt="A professional headshot of a person with a friendly expression, set against a clean, minimalist studio background. The lighting is soft and high-key, aligning with a premium digital interface aesthetic. The color palette is neutral with soft white tones, reflecting a modern, accessible government-tech platform style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuGihXIAA4cXtla00-nUZVickvGQs5_khROZqchwIG5aXM1juKqz7GEzt0FS1u3wXxL1V0VsNyJhKLmGMSWejW_m-X3bPak3__hXXZotxxJthlCwQf0o9sMLPmgsnymQTbtkVjyB1_Wzu39r5C79xHsfB5lWAA_Ys9XyJcPzYWcbcqO5iyaUooLa_U0eRDqhFCMHHe3kcwQbqpnEWTtOADXlA1tbHmDTLlXGyGDMmp5WI98wU_LKhEbO4vUGZx8HtYoO7mxlyvEzE"/>
+</div>
+</div>
+</nav>
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full h-screen w-64 border-r-2 border-slate-900 bg-white shadow-[4px_0px_0px_0px_#0D0C22] pt-20 z-40">
+<div class="px-6 py-4 border-b border-slate-100 mb-4">
+<h2 class="text-xl font-black text-slate-900 font-h3">VoteFlow</h2>
+<p class="text-caption font-caption text-slate-500 uppercase tracking-widest">Civic Engagement</p>
+</div>
+<div class="flex flex-col gap-2 px-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-100 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-100 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">ads_click</span>
+<span class="font-label-bold text-label-bold">My Journey</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-100 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-bold text-label-bold">Elections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-600 text-white shadow-[4px_4px_0px_0px_#0D0C22] translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-bold text-label-bold">AI Assistant</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-100 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</a>
+</div>
+<div class="mt-auto p-6">
+<button class="w-full bg-blue-600 text-white font-label-bold py-4 px-2 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_#0D0C22] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_0px_#0D0C22] active:translate-y-[2px] active:shadow-none transition-all">
+                Register to Vote
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 pb-12 px-6 md:px-12 flex flex-col min-h-screen">
+<header class="mb-10 max-w-4xl">
+<h1 class="font-h1 text-h1 text-slate-900 mb-4">JanVote <span class="text-blue-600">AI</span></h1>
+<p class="font-body-lg text-body-lg text-slate-600 max-w-2xl">
+                Your high-speed gateway to verified civic information. Accurate, transparent, and built for the digital-first citizen.
+            </p>
+</header>
+<!-- Chat Container -->
+<div class="flex-grow flex flex-col max-w-5xl w-full mx-auto relative">
+<!-- Glassmorphism Chat Panel -->
+<div class="glass-panel flex-grow rounded-3xl border-2 border-white/50 flex flex-col overflow-hidden brutalist-shadow-lg mb-8">
+<!-- Chat Feed -->
+<div class="flex-grow p-6 overflow-y-auto flex flex-col gap-6">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="bg-surface-container text-slate-500 font-caption text-caption px-4 py-1 rounded-full border border-slate-200">Today</span>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4 max-w-[85%]">
+<div class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white border-2 border-white/30 shrink-0">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+<div class="bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-tl-none border border-slate-200 font-body-md">
+                            Hello! I am <span class="font-bold text-blue-600">JanVote AI</span>. I can help you with registration details, ballot locations, or understanding election laws. How can I assist your journey today?
+                        </div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-4 max-w-[85%] self-end flex-row-reverse">
+<div class="w-10 h-10 rounded-full border-2 border-slate-900 overflow-hidden shrink-0">
+<img alt="User Profile Avatar" data-alt="A clean, minimalist portrait of a modern digital user, captured with soft natural light. The overall mood is approachable and professional, fitting into a clean-tech government application. The background is a soft gradient of light blues and whites, echoing the design's transparency and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz584W2ivIDYwRHMaPwD8AaitVO0ynAD7yHA7qlJvCPzChgCFh7BMMjnACfoD3il5GqojUqBLyX3OmB2oLvohqpan8AR4lUhw8iplbGXaQduarzP7p5gCbvfoH8XGTkhiX2MinyH3PhO4XmUnb1GHd-wXKjeSpxK2VHxjpY0s1kzLUAIAadrkLH8YSeq3gBLKipHe4V7AVVPOqygdxRjX5xuzG2GnI_s61OnRszUlwbEH-L5EhyFHyFM-ULQV7XQ2X7pbe-MAA3uk"/>
+</div>
+<div class="bg-primary-container text-white p-4 rounded-2xl rounded-tr-none brutalist-shadow border-2 border-slate-900 font-body-md">
+                            I just moved to a new state. What do I need to update my registration for the upcoming November election?
+                        </div>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4 max-w-[85%]">
+<div class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-white border-2 border-white/30 shrink-0">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+<div class="bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-tl-none border border-slate-200 font-body-md">
+                            Welcome to your new home! To vote in the November election, you typically need to re-register with your new address. 
+                            <br/><br/>
+                            Most states require this at least 30 days before Election Day. Would you like me to pull up the specific <b>Required docs</b> for your current location?
+                        </div>
+</div>
+<!-- Thinking State (Subtle) -->
+<div class="flex items-center gap-2 text-slate-400 px-14">
+<div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-75"></div>
+<div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-150"></div>
+</div>
+</div>
+<!-- Chat Input Area -->
+<div class="p-6 bg-white/40 border-t border-white/30">
+<!-- Action Chips -->
+<div class="flex flex-wrap gap-3 mb-6">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border-2 border-blue-600 bg-blue-50 text-blue-600 font-label-bold hover:bg-blue-600 hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                            How to register?
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border-2 border-blue-600 bg-blue-50 text-blue-600 font-label-bold hover:bg-blue-600 hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">description</span>
+                            Required docs?
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border-2 border-slate-300 bg-white text-slate-600 font-label-bold hover:border-slate-900 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">pin_drop</span>
+                            Nearest Booth
+                        </button>
+</div>
+<!-- Main Input -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-blue-600 transition-colors">chat_bubble</span>
+</div>
+<input class="w-full pl-14 pr-32 py-5 bg-white rounded-2xl border-2 border-slate-900 focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-[4px_4px_0px_0px_#1a73e8] transition-all font-body-md placeholder:text-slate-400" placeholder="Ask JanVote AI a question..." type="text"/>
+<div class="absolute inset-y-0 right-2 flex items-center gap-2 pr-2">
+<button class="p-3 text-slate-400 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="bg-blue-600 text-white p-3 rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0D0C22] active:translate-y-[2px] active:shadow-none transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-white p-6 rounded-2xl border-2 border-slate-900 brutalist-shadow">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container border-2 border-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">verified</span>
+</div>
+<h4 class="font-label-bold text-label-bold uppercase">Official Info</h4>
+</div>
+<p class="text-slate-600 text-body-md">Connected to Federal Election Commission real-time API for 100% accuracy.</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border-2 border-slate-900 brutalist-shadow">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed border-2 border-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">lock</span>
+</div>
+<h4 class="font-label-bold text-label-bold uppercase">Privacy First</h4>
+</div>
+<p class="text-slate-600 text-body-md">Conversations are encrypted and never stored against your voter ID.</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border-2 border-slate-900 brutalist-shadow">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed border-2 border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed-variant">timer</span>
+</div>
+<h4 class="font-label-bold text-label-bold uppercase">Deadlines</h4>
+</div>
+<p class="text-slate-600 text-body-md">24 days remaining to register for the upcoming general election.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="md:ml-64 bg-slate-900 border-t-2 border-slate-800 w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center text-slate-400">
+<div class="mb-6 md:mb-0">
+<span class="text-lg font-bold text-white block mb-2 font-h3">VoteFlow</span>
+<p class="text-sm font-caption">© 2024 VoteFlow. Digital-First Government.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-bold text-sm hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-bold text-sm hover:text-blue-400 transition-colors" href="#">Terms of Service</a>
+<a class="font-label-bold text-sm hover:text-blue-400 transition-colors" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>

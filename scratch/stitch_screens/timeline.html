@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e3dffe",
+                      "secondary-fixed": "#89fa9b",
+                      "on-secondary-fixed-variant": "#005320",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "on-primary-fixed-variant": "#004493",
+                      "tertiary-fixed-dim": "#fbbc06",
+                      "primary-container": "#1a73e8",
+                      "on-tertiary-fixed": "#261a00",
+                      "inverse-primary": "#adc7ff",
+                      "surface-container-low": "#f6f2ff",
+                      "surface-bright": "#fcf8ff",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-variant": "#e3dffe",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c1c6d6",
+                      "primary": "#005bbf",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#1a1930",
+                      "surface": "#fcf8ff",
+                      "on-tertiary-container": "#ffffff",
+                      "tertiary-fixed": "#ffdea0",
+                      "secondary-fixed-dim": "#6ddd81",
+                      "on-secondary-container": "#00722f",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#005bc0",
+                      "error-container": "#ffdad6",
+                      "outline": "#727785",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#2f2e46",
+                      "background": "#fcf8ff",
+                      "surface-container": "#efebff",
+                      "surface-dim": "#dad7f6",
+                      "on-surface-variant": "#414754",
+                      "on-primary-fixed": "#001a41",
+                      "on-surface": "#1a1930",
+                      "tertiary": "#795900",
+                      "primary-fixed-dim": "#adc7ff",
+                      "on-secondary-fixed": "#002108",
+                      "on-primary-container": "#ffffff",
+                      "inverse-on-surface": "#f2eeff",
+                      "secondary": "#006e2c",
+                      "surface-container-high": "#e9e5ff",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#86f898",
+                      "tertiary-container": "#987000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "container-padding": "24px",
+                      "gutter": "20px",
+                      "section-gap": "80px",
+                      "unit": "4px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "label-bold": ["Inter"],
+                      "h2": ["Inter"],
+                      "body-lg": ["Work Sans"],
+                      "h1": ["Inter"],
+                      "body-md": ["Work Sans"],
+                      "caption": ["Work Sans"],
+                      "h3": ["Inter"]
+              },
+              "fontSize": {
+                      "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                      "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "h3": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-brutalist-shadow {
+            shadow-[4px_4px_0px_0px_#0D0C22];
+        }
+        .neo-brutalist-border {
+            border: 2px solid #1a1930;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg fixed top-0 w-full z-50 border-b-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_#0D0C22] flex justify-between items-center px-6 py-3">
+<div class="text-2xl font-black text-slate-900 dark:text-white italic font-['Inter'] uppercase tracking-tight">
+            VoteFlow
+        </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 font-['Inter'] font-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">Timeline</a>
+<a class="text-slate-700 dark:text-slate-300 font-['Inter'] font-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">Booth Finder</a>
+<a class="text-slate-700 dark:text-slate-300 font-['Inter'] font-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">JanVote AI</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-900 dark:text-white p-2 hover:translate-y-[-1px] transition-transform active:translate-y-[2px]" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full border-2 border-slate-900 overflow-hidden bg-surface-container">
+<img alt="User Profile Avatar" data-alt="A professional studio portrait of a diverse, friendly individual with a clean, high-key background. The lighting is soft and modern, highlighting clear features in a digital-first civic engagement platform style. The color palette is composed of soft whites and sharp navy accents to match a government fintech aesthetic. The mood is trustworthy and approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnXkp86JuFAEk1s2m5iqYR2rQc6fwrPu0rGuwSoKBVzvU2RB2xAcNGjSCbbwJCNyo8pprDOZHawpnP5Cnqvxw1bJHAlI6jkL57MPznOUAr-SL_F_2DxSaflPScyBGY2bdiu5JSw2GJaQgz7KNVNQSYuRVe8G4vAFECegkYSxXruwV0use4RV5dmwZjW4aEnp2-lwJ7-WmYXt5sebhBiTra2pCdxo11hlzuasXlla8ZHOCxGMXl-isTlxa2oRE-X_RKglqSSyxWX3U"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile hidden, Web shown) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full h-screen w-64 border-r-2 border-slate-900 dark:border-white bg-white dark:bg-slate-900 shadow-[4px_0px_0px_0px_#0D0C22] pt-24 pb-8 px-4 z-40">
+<div class="mb-8 px-2">
+<h2 class="text-xl font-black text-slate-900 dark:text-white font-['Inter']">VoteFlow</h2>
+<p class="text-xs font-['Inter'] text-slate-500 uppercase tracking-widest">Civic Engagement</p>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform font-['Inter'] font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg bg-blue-600 text-white shadow-[4px_4px_0px_0px_#0D0C22] translate-x-1 font-['Inter'] font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="Ads_Click">ads_click</span>
+                My Journey
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform font-['Inter'] font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+                Elections
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform font-['Inter'] font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+                AI Assistant
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform font-['Inter'] font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<button class="bg-primary text-white py-4 px-6 border-2 border-slate-900 rounded-none shadow-[4px_4px_0px_0px_#0D0C22] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_0px_#0D0C22] active:translate-y-[2px] active:shadow-none transition-all font-['Inter'] font-bold uppercase">
+            Register to Vote
+        </button>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-32 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-16">
+<span class="inline-block bg-primary-container text-on-primary-container px-4 py-1 rounded-full border-2 border-slate-900 font-label-bold text-label-bold mb-4 shadow-[2px_2px_0px_0px_#0D0C22]">
+                2024 GENERAL ELECTION
+            </span>
+<h1 class="font-h1 text-h1 text-on-surface mb-6">The Road to <span class="text-primary italic">Democracy</span></h1>
+<p class="font-body-lg text-body-lg max-w-2xl text-on-surface-variant">
+                Your guide through the critical milestones of the upcoming election cycle. Stay informed, get registered, and make your voice heard at the ballot box.
+            </p>
+</header>
+<!-- Timeline Section -->
+<div class="relative">
+<!-- Central Vertical Line -->
+<div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-slate-900 dark:bg-slate-700 -translate-x-1/2 z-0"></div>
+<!-- Phase 1: Registration -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 items-center">
+<div class="md:text-right md:pr-16 order-2 md:order-1">
+<div class="bg-white/70 backdrop-blur-lg border-2 border-slate-900 p-8 shadow-[8px_8px_0px_0px_#0D0C22] hover:translate-y-[-4px] transition-transform">
+<div class="flex md:justify-end mb-4">
+<span class="bg-secondary-container text-on-secondary-container border-2 border-secondary px-4 py-1 rounded-full text-label-bold font-label-bold">
+                                COMPLETED
+                            </span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Registration</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Ensure your name is on the electoral roll. Update your address and verify your eligibility to vote in your specific constituency.</p>
+<div class="mt-6 flex md:justify-end gap-3">
+<div class="flex items-center gap-1 text-secondary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Verified
+                            </div>
+</div>
+</div>
+</div>
+<div class="flex justify-start md:justify-center order-1 md:order-2">
+<div class="w-16 h-16 rounded-full bg-secondary border-4 border-slate-900 z-20 flex items-center justify-center text-white shadow-[4px_4px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+</div>
+</div>
+</div>
+<!-- Phase 2: Campaigning (CURRENT) -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 items-center">
+<div class="flex justify-start md:justify-center order-1">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed border-4 border-slate-900 z-20 flex items-center justify-center text-on-tertiary-fixed shadow-[4px_4px_0px_0px_#0D0C22] ring-4 ring-tertiary-fixed-dim/50">
+<span class="material-symbols-outlined" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+</div>
+<div class="md:pl-16 order-2">
+<div class="bg-white/70 backdrop-blur-lg border-4 border-tertiary-fixed p-8 shadow-[8px_8px_0px_0px_#fbbc06] hover:translate-y-[-4px] transition-transform relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-tertiary-fixed text-on-tertiary-fixed px-6 py-1 font-label-bold uppercase tracking-widest text-xs transform translate-x-8 translate-y-4 rotate-45 border-b-2 border-slate-900">
+                            LIVE
+                        </div>
+<div class="flex mb-4">
+<span class="bg-tertiary-container text-on-tertiary-container border-2 border-tertiary px-4 py-1 rounded-full text-label-bold font-label-bold">
+                                CURRENT PHASE
+                            </span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Campaigning</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Political parties and independent candidates present their manifestos. Attend town halls, watch debates, and analyze policy proposals.</p>
+<button class="mt-6 bg-primary text-white px-6 py-3 border-2 border-slate-900 shadow-[4px_4px_0px_0px_#0D0C22] font-label-bold uppercase hover:translate-y-[-2px] active:translate-y-[2px] transition-all">
+                            View Manifestos
+                        </button>
+</div>
+</div>
+</div>
+<!-- Phase 3: Voting -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 items-center">
+<div class="md:text-right md:pr-16 order-2 md:order-1">
+<div class="bg-white/70 backdrop-blur-lg border-2 border-slate-900 p-8 shadow-[8px_8px_0px_0px_#0D0C22] hover:translate-y-[-4px] transition-transform opacity-70 grayscale-[0.5]">
+<div class="flex md:justify-end mb-4">
+<span class="bg-surface-container-highest text-on-surface-variant border-2 border-outline px-4 py-1 rounded-full text-label-bold font-label-bold">
+                                UPCOMING
+                            </span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Voting Day</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">November 15, 2024. Polls open from 7:00 AM to 10:00 PM. Find your designated booth and bring a valid photo ID.</p>
+<div class="mt-6 flex md:justify-end">
+<div class="text-on-surface-variant font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">calendar_today</span>
+                                42 Days to Go
+                            </div>
+</div>
+</div>
+</div>
+<div class="flex justify-start md:justify-center order-1 md:order-2">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-slate-900 z-20 flex items-center justify-center text-slate-900 shadow-[4px_4px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined" data-icon="how_to_vote">how_to_vote</span>
+</div>
+</div>
+</div>
+<!-- Phase 4: Results -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-0 items-center">
+<div class="flex justify-start md:justify-center order-1">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-slate-900 z-20 flex items-center justify-center text-slate-900 shadow-[4px_4px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+</div>
+</div>
+<div class="md:pl-16 order-2">
+<div class="bg-white/70 backdrop-blur-lg border-2 border-slate-900 p-8 shadow-[8px_8px_0px_0px_#0D0C22] hover:translate-y-[-4px] transition-transform opacity-70 grayscale-[0.5]">
+<div class="flex mb-4">
+<span class="bg-surface-container-highest text-on-surface-variant border-2 border-outline px-4 py-1 rounded-full text-label-bold font-label-bold">
+                                UPCOMING
+                            </span>
+</div>
+<h3 class="font-h3 text-h3 mb-4">Results Declared</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Count verification and official declaration. Winners of constituencies are announced, followed by the formation of the new government.</p>
+<div class="mt-6">
+<p class="text-caption text-caption text-on-surface-variant italic italic">Expected within 48 hours post-poll.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action Card (Bento Grid Style) -->
+<section class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-primary text-white p-10 border-4 border-slate-900 shadow-[12px_12px_0px_0px_#0D0C22] relative overflow-hidden group">
+<div class="relative z-10">
+<h2 class="text-h2 font-h2 mb-4">Be Ready for Phase 3.</h2>
+<p class="font-body-lg text-body-lg mb-8 opacity-90 max-w-lg">Booth locations are now live. Find the polling station closest to you and plan your journey to the ballot box.</p>
+<button class="bg-white text-primary px-8 py-4 border-2 border-slate-900 font-label-bold uppercase shadow-[6px_6px_0px_0px_#0D0C22] hover:translate-y-[-4px] hover:translate-x-[-2px] transition-all active:translate-y-[2px]">
+                        Locate Polling Booth
+                    </button>
+</div>
+<div class="absolute -right-20 -bottom-20 opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'wght' 700;">location_on</span>
+</div>
+</div>
+<div class="bg-secondary-container p-8 border-4 border-slate-900 shadow-[12px_12px_0px_0px_#0D0C22] flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-secondary text-5xl mb-4" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h3 class="font-h3 text-h3 mb-2 text-on-secondary-container">Stay Verified</h3>
+<p class="font-body-md text-body-md text-on-secondary-container/80">Check your status regularly to ensure no last-minute changes to your eligibility.</p>
+</div>
+<a class="mt-8 font-label-bold uppercase text-secondary flex items-center gap-2 group" href="#">
+                    Check Status 
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 dark:bg-black w-full border-t-2 border-slate-800 py-12 px-8 flex flex-col md:flex-row justify-between items-center text-white">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-white font-['Inter'] mb-2">VoteFlow</div>
+<p class="font-['Inter'] text-sm text-slate-400">© 2024 VoteFlow. Digital-First Government.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+<a class="text-slate-500 font-['Inter'] text-sm hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 font-['Inter'] text-sm hover:text-blue-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 font-['Inter'] text-sm hover:text-blue-400 transition-colors" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-slate-700 flex items-center justify-center hover:bg-blue-400 hover:text-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 border border-slate-700 flex items-center justify-center hover:bg-blue-400 hover:text-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</footer>
+<!-- FAB -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white border-2 border-slate-900 rounded-none shadow-[8px_8px_0px_0px_#0D0C22] flex items-center justify-center z-50 hover:translate-y-[-4px] hover:translate-x-[-2px] hover:shadow-[10px_10px_0px_0px_#0D0C22] transition-all active:translate-y-[2px] active:shadow-none">
+<span class="material-symbols-outlined text-3xl" data-icon="smart_toy">smart_toy</span>
+</button>
+</body></html>

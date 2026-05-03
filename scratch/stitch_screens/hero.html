@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e3dffe",
+                        "secondary-fixed": "#89fa9b",
+                        "on-secondary-fixed-variant": "#005320",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#004493",
+                        "tertiary-fixed-dim": "#fbbc06",
+                        "primary-container": "#1a73e8",
+                        "on-tertiary-fixed": "#261a00",
+                        "inverse-primary": "#adc7ff",
+                        "surface-container-low": "#f6f2ff",
+                        "surface-bright": "#fcf8ff",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#e3dffe",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c1c6d6",
+                        "primary": "#005bbf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1930",
+                        "surface": "#fcf8ff",
+                        "on-tertiary-container": "#ffffff",
+                        "tertiary-fixed": "#ffdea0",
+                        "secondary-fixed-dim": "#6ddd81",
+                        "on-secondary-container": "#00722f",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005bc0",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f2e46",
+                        "background": "#fcf8ff",
+                        "surface-container": "#efebff",
+                        "surface-dim": "#dad7f6",
+                        "on-surface-variant": "#414754",
+                        "on-primary-fixed": "#001a41",
+                        "on-surface": "#1a1930",
+                        "tertiary": "#795900",
+                        "primary-fixed-dim": "#adc7ff",
+                        "on-secondary-fixed": "#002108",
+                        "on-primary-container": "#ffffff",
+                        "inverse-on-surface": "#f2eeff",
+                        "secondary": "#006e2c",
+                        "surface-container-high": "#e9e5ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#86f898",
+                        "tertiary-container": "#987000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "gutter": "20px",
+                        "section-gap": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-lg": ["Work Sans"],
+                        "h1": ["Inter"],
+                        "body-md": ["Work Sans"],
+                        "caption": ["Work Sans"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "h3": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neo-shadow { shadow-[4px_4px_0px_0px_#0D0C22]; }
+        .neo-shadow-hover:hover { shadow-[6px_6px_0px_0px_#0D0C22]; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b-2 border-slate-900 bg-white/70 backdrop-blur-lg flex justify-between items-center px-6 py-3 shadow-[4px_4px_0px_0px_#0D0C22]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-slate-900 italic font-h1">VoteFlow</span>
+<div class="hidden md:flex gap-6">
+<a class="text-blue-600 border-b-2 border-blue-600 font-label-bold text-label-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">Timeline</a>
+<a class="text-slate-700 font-label-bold text-label-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">Booth Finder</a>
+<a class="text-slate-700 font-label-bold text-label-bold uppercase tracking-tight hover:translate-y-[-1px] transition-transform" href="#">JanVote AI</a>
+</div>
+</div>
+<!-- Centered Search Bar -->
+<div class="hidden md:flex flex-1 max-w-md mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-full border-2 border-slate-900 focus:shadow-[4px_4px_0px_0px_#1a73e8] outline-none transition-all font-body-md" placeholder="Search districts, candidates..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-700 hover:translate-y-[-1px] transition-transform active:translate-y-[2px]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container p-0.5 ring-2 ring-error overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover rounded-full" data-alt="A close-up professional headshot of a diverse individual used as a profile avatar. The person has a friendly expression and is set against a clean, softly lit studio background that emphasizes clarity and human connection. The lighting is bright and modern, aligning with a high-end civic engagement platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYhE8wKsvrFJuQt68Loith7t1_JYTosXYiUWzqc9KwKEe2e6cffJU_21i9qVfURYtyqBzqT0WP9j0yx0MAc7MjiIcAWK0s-yN5vep8jvHHDLnDn1M8NJah_zSqjYgqc5RSflTqTRTWEtI63BupLtOj2ToG2k4tFVOBgZm_5S251VZXuLS8uju6lvxk65vSHfL5Eajzz6WhZlcsGVra1HPp77Ei9YKJQ_T5vhQQ3PseRCL1O-QUAgAtelwsrCyIT2xqlkjgFLeGYTQ"/>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<main class="relative pt-32 pb-20 px-6 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<!-- Abstract Background Shapes -->
+<div class="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+<div class="absolute bottom-10 right-10 w-96 h-96 bg-error/10 rounded-full blur-3xl -z-10"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-slate-200/50 rounded-full -z-20"></div>
+<div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Left Content -->
+<div class="space-y-stack-lg z-10">
+<div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border-2 border-secondary bg-secondary-container/30 text-secondary font-label-bold text-label-bold uppercase">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                    Election Season 2024
+                </div>
+<h1 class="font-h1 text-h1 text-on-background max-w-xl">
+                    Understand Elections. <br/>
+<span class="text-primary italic">Vote Smarter.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Navigate the democratic process with clarity. From registration to the final ballot, VoteFlow provides the tools and transparency you need to make your voice heard.
+                </p>
+<div class="pt-stack-md">
+<button class="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full border-2 border-slate-900 shadow-[4px_4px_0px_0px_#0D0C22] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_0px_#0D0C22] active:translate-y-[2px] active:shadow-none transition-all font-h3 text-body-lg">
+                        Start Your Voting Journey
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center gap-6 pt-stack-lg border-t border-slate-200">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="A smiling man representing a community member participating in civic life. The portrait is high-quality with natural lighting and a warm, trustworthy feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeRYy2WEz0Vw4zZS9j4MK_Ig-jvzaZlB1mNX46bwUcLXidUePKUCBFBQoKTh9p8dsBRDS2g9f3elaPHYuCsp3lFmliatmyGYRvF4_5h4UCIBJqowHE8kHFMwm5qsLudps_5JmqcziweCfccN7_ADM-jVmYX1iEJbvUb9A_qKqD1pyByXt7EzwqAXEN-vZPmD6G646WTMd6MrNKCu_xW3tV-CTnvGdYGjMkry9ilRxVIj0lpYgzgDJVVhub5VgGaMQHrbwVKr0zAHw"/>
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="A professional woman with a bright smile, symbolizing an informed voter. The image style is clean, modern, and high-energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR8e0Y_tTUlc9QoF-IdqF-Vmb37NJQTcP29fTC5wzgaw5iSX1nIl2Eesgp9P4xdiLpKkvBjOTgcElOlXaa0i4y-CCQ1lfgiz0EnpspNe4SQyBm-t9KK0htr5fWRnqJE4md7J_w1Vh491l979wm6UHJXpcUZ2IvJ8jnEkyVC3CP55AJaMcWm0o9aihUrBW4eOpLYOYfyV3SMGM6zA_zBV3Z0MHGxJXlO5arGTzdlW8Y2DSmkLlFEKX83XJdw2lLfqAMJFIUeuHlXjQ"/>
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="A young adult male look confidently towards the camera, representing the next generation of voters. High-key lighting with a professional studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfXQfWbG_mogvL-7pY0hw5cL_kAotj19VNWPc1gPagCotd4BK_1ykMc6chAdTe6mCUm4atZvO8kVSTT_WMbxk-pjRg4wfLpkjWggA16HNT0ynkng3KWLXwKzdxasdqDscpLRBqjlYCp_-3fKxLbzUK1Z8Q_v1B_cOqgjJflfKg6JqdKqhNpc8279JvuF-44kFBqha6QBmbvKIccPqTjJz0HQ4ATig58FxmzRdLmPVNUm6YmQ1xUrWNysDJf6qJACz2yWOCzjSD1_Y"/>
+</div>
+<p class="text-caption font-caption text-slate-500">Joined by 2.4M+ active voters this month</p>
+</div>
+</div>
+<!-- Right Content: Overlapping Glass Cards -->
+<div class="relative h-[600px] w-full flex items-center justify-center">
+<!-- Card 1: Polling -->
+<div class="absolute top-[20%] right-0 w-72 p-6 bg-white/70 backdrop-blur-lg border-2 border-white/50 rounded-xl shadow-[8px_8px_0px_0px_#005bbf] z-30 transform rotate-3 hover:rotate-0 transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-primary-container text-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined">how_to_vote</span>
+</div>
+<span class="px-3 py-1 rounded-full border-2 border-primary bg-primary-fixed text-primary font-label-bold text-caption">STEP 03</span>
+</div>
+<h3 class="font-h3 text-body-lg text-slate-900 mb-2">Polling Booth</h3>
+<p class="text-caption font-body-md text-slate-600 mb-4">Find your nearest location and live queue times.</p>
+<div class="w-full h-32 rounded-lg bg-slate-100 overflow-hidden border border-slate-200">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all" data-alt="A stylized, architectural photograph of a modern community center or polling location. The building features clean lines and large glass windows, reflecting a bright, midday sky. The composition is artistic and minimalist, emphasizing transparency and public accessibility in a digital-first government context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwMvQ8nN1TLOKTzbouvS7Xvifwl3uaNmPCLCvAZs7mGIFGoN_EWRxLE4u22eXIklSbhkDPnYZ2su-xQ_i60nv8Eko1nebxjdDkPYMekvp0og4l8Nhi7VVWNwLMH7DpzNGjq50psK8DIa_gjLjndDWpoe_IeD9JFZWUzArX9gohkeln8GNQEgQNskfmDMrLobQMBknVN9CLvrhsD3APXCBHz1H6OtXKQRP8yAhEcmZFJhUYnr1Ig2oTR5Dr1IVV4SVdi2hyOUMeWg"/>
+</div>
+</div>
+<!-- Card 2: Documents -->
+<div class="absolute top-[40%] left-[5%] w-72 p-6 bg-white/80 backdrop-blur-xl border-2 border-white/50 rounded-xl shadow-[8px_8px_0px_0px_#ba1a1a] z-20 transform -rotate-6 hover:rotate-0 transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-error text-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="px-3 py-1 rounded-full border-2 border-error bg-error-container text-error font-label-bold text-caption">STEP 02</span>
+</div>
+<h3 class="font-h3 text-body-lg text-slate-900 mb-2">ID Verification</h3>
+<p class="text-caption font-body-md text-slate-600">Ensure your documents are up to date for the booth.</p>
+<div class="mt-4 flex gap-2">
+<div class="flex-1 h-2 bg-error rounded-full"></div>
+<div class="flex-1 h-2 bg-slate-200 rounded-full"></div>
+<div class="flex-1 h-2 bg-slate-200 rounded-full"></div>
+</div>
+</div>
+<!-- Card 3: Registration -->
+<div class="absolute top-[5%] left-[25%] w-72 p-6 bg-white/60 backdrop-blur-md border-2 border-white/50 rounded-xl shadow-[8px_8px_0px_0px_#006e2c] z-10 transform rotate-2 hover:rotate-0 transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-secondary text-white border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0D0C22]">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<span class="px-3 py-1 rounded-full border-2 border-secondary bg-secondary-container text-secondary font-label-bold text-caption">STEP 01</span>
+</div>
+<h3 class="font-h3 text-body-lg text-slate-900 mb-2">Registration</h3>
+<p class="text-caption font-body-md text-slate-600">Quick 2-minute digital registration process.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bento Grid Stats Section -->
+<section class="py-section-gap px-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Bento Item 1 -->
+<div class="md:col-span-2 bg-white p-8 border-2 border-slate-900 shadow-[8px_8px_0px_0px_#0D0C22] rounded-2xl flex flex-col justify-between">
+<div>
+<h2 class="font-h2 text-h3 mb-4">Election Timeline</h2>
+<div class="flex gap-4 mb-8">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary border-2 border-slate-900 flex items-center justify-center text-white font-bold shadow-[2px_2px_0px_0px_#0D0C22]">1</div>
+<div class="w-0.5 h-12 bg-slate-900"></div>
+</div>
+<div class="pt-2">
+<h4 class="font-h3 text-body-md">Voter Registration Closes</h4>
+<p class="text-caption text-slate-500">October 15, 2024</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 font-bold shadow-[2px_2px_0px_0px_#0D0C22]">2</div>
+</div>
+<div class="pt-2">
+<h4 class="font-h3 text-body-md">General Election Day</h4>
+<p class="text-caption text-slate-500">November 5, 2024</p>
+</div>
+</div>
+</div>
+<button class="mt-8 font-label-bold text-primary flex items-center gap-2 hover:translate-x-1 transition-transform">
+                        VIEW FULL CALENDAR <span class="material-symbols-outlined">calendar_today</span>
+</button>
+</div>
+<!-- Bento Item 2 -->
+<div class="bg-primary p-8 border-2 border-slate-900 shadow-[8px_8px_0px_0px_#0D0C22] rounded-2xl text-white">
+<span class="material-symbols-outlined text-4xl mb-4">smart_toy</span>
+<h3 class="font-h3 text-h3 mb-2">JanVote AI</h3>
+<p class="font-body-md opacity-90 mb-6">Ask our AI assistant anything about candidates, policies, or the voting process. 24/7 support.</p>
+<div class="p-4 bg-white/20 backdrop-blur-md rounded-xl border border-white/30 text-sm italic">
+                        "What are the ID requirements for my state?"
+                    </div>
+</div>
+<!-- Bento Item 3 -->
+<div class="bg-secondary-container p-8 border-2 border-slate-900 shadow-[8px_8px_0px_0px_#0D0C22] rounded-2xl">
+<h3 class="font-h3 text-h3 text-on-secondary-container mb-4">Live Participation</h3>
+<div class="text-5xl font-black text-on-secondary-container mb-2">64%</div>
+<p class="text-body-md text-on-secondary-container opacity-80">Of eligible voters in your district have registered.</p>
+<div class="mt-6 w-full h-4 bg-white/50 rounded-full overflow-hidden border-2 border-slate-900">
+<div class="w-[64%] h-full bg-secondary"></div>
+</div>
+</div>
+<!-- Bento Item 4 -->
+<div class="md:col-span-2 bg-white border-2 border-slate-900 shadow-[8px_8px_0px_0px_#0D0C22] rounded-2xl overflow-hidden flex">
+<div class="flex-1 p-8">
+<h3 class="font-h3 text-h3 mb-4">Booth Finder</h3>
+<p class="font-body-md text-slate-600 mb-6">Find your designated polling station using our real-time interactive map.</p>
+<div class="flex gap-2">
+<input class="flex-1 px-4 py-2 border-2 border-slate-900 rounded-lg focus:shadow-[4px_4px_0px_0px_#0D0C22] outline-none transition-all" placeholder="Enter Zip Code" type="text"/>
+<button class="px-6 py-2 bg-slate-900 text-white rounded-lg border-2 border-slate-900 hover:bg-slate-800 transition-colors">Find</button>
+</div>
+</div>
+<div class="hidden sm:block w-1/3 bg-slate-100 relative">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="A clean, minimalist topographical map view with primary blue markers indicating various civic locations. The map uses a light-mode aesthetic with high contrast and simple iconography, designed to feel functional and modern." data-location="Washington DC" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv9kUVMiZmHamoUH4e5uAzc44qx2Qep_fudQ17sBiUBE-vvOz4MH_4M6smH4CdJdTT7S_x1SDdLZn5pf4Jx1htmEAs3AfM6SgKOM8s74-fp3QyPQj4mVQTuNGW9ShBS9lJDjjw8dMY_bcCos55_jpL4wRj7fjsqZW4aN_jwO-qK-nlB0NLPWw4iAenRHjHkWyTCHHtINHJXMosMh57ZIf0KzFrM6DGMGv0EPUafcg3ouUNLMnOKbTmeNNQnIbvyalH09eCDBMQ88k"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-slate-900 text-white flex flex-col md:flex-row justify-between items-center border-t-2 border-slate-800">
+<div class="mb-8 md:mb-0 text-center md:text-left">
+<span class="text-lg font-bold text-white mb-2 block">VoteFlow</span>
+<p class="font-['Inter'] text-sm text-slate-400">© 2024 VoteFlow. Digital-First Government.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-blue-400 transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors text-sm" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors text-sm" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<button class="p-2 rounded-lg border border-slate-700 hover:border-primary-container hover:text-primary-container transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-2 rounded-lg border border-slate-700 hover:border-primary-container hover:text-primary-container transition-all">
+<span class="material-symbols-outlined">language</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>
